@@ -580,3 +580,389 @@ const isDeleted = false;
 // if (typeof data !== "undefined") {
 //   // ishlatish
 // }
+
+// =============================================================
+// Type Conversion (Implicit va Explicit)
+// JavaScript'da ma'lumot turlarini o'zgartirish ikki usulda amalga oshadi:
+
+// Explicit (Aniq) - dasturchi o'zi turni o'zgartiradi
+// Implicit (Yashirin) - JavaScript avtomatik o'zgartiradi (Type Coercion)
+
+// 1. Explicit Type Conversion (Aniq Konvertatsiya)
+// Dasturchi o'zi turni o'zgartiradi.
+
+// 1.1 String'ga o'zgartirish
+// String() funksiyasi
+// const num = 123;
+// console.log(String(num)); // "123"
+// console.log(String(true)); // "true"
+// console.log(String(false)); // "false"
+// console.log(String(null)); // "null"
+// console.log(String(undefined)); // "undefined"
+
+// // .toString() metodi
+// const number = 456;
+// console.log(number.toString()); // "456"
+
+// const bool = true;
+// console.log(bool.toString()); // "true"
+
+// const arr = [1, 2, 3];
+// console.log(arr.toString()); // "1,2,3"
+
+// // ESLATMA: null va undefined bilan ishlamaydi
+// // null.toString(); // TypeError
+// // undefined.toString(); // TypeError
+
+// // toString() bilan number sistemasini o'zgartirish
+// const decimal = 255;
+// console.log(decimal.toString(2)); // "11111111" (binary)
+// console.log(decimal.toString(8)); // "377" (octal)
+// console.log(decimal.toString(16)); // "ff" (hexadecimal)
+
+// // Template literal (backticks)
+// const value = 789;
+// console.log(`${value}`); // "789"
+
+//  1.2 Number'ga o'zgartirish
+// Number() funksiyasi
+// console.log(Number("123")); // 123
+// console.log(Number("123.45")); // 123.45
+// console.log(Number("123abc")); // NaN
+// console.log(Number("")); // 0 (bo'sh string)
+// console.log(Number("   ")); // 0 (faqat probel)
+// console.log(Number(true)); // 1
+// console.log(Number(false)); // 0
+// console.log(Number(null)); // 0
+// console.log(Number(undefined)); // NaN
+
+// // parseInt() - butun son
+// console.log(parseInt("123")); // 123
+// console.log(parseInt("123.99")); // 123 (kasrni kesib tashlaydi)
+// console.log(parseInt("123abc")); // 123 (raqam tugaguncha o'qiydi)
+// console.log(parseInt("abc123")); // NaN
+// console.log(parseInt("   42   ")); // 42
+
+// // parseInt() bilan radix (sanoq sistemasi)
+// console.log(parseInt("1010", 2)); // 10 (binary)
+// console.log(parseInt("ff", 16)); // 255 (hexadecimal)
+// console.log(parseInt("77", 8)); // 63 (octal)
+
+// // parseFloat() - o'nlik son
+// console.log(parseFloat("123.45")); // 123.45
+// console.log(parseFloat("123.45.67")); // 123.45
+// console.log(parseFloat("123.45abc")); // 123.45
+// console.log(parseFloat("abc")); // NaN
+
+// // Unary plus operator (+)
+// console.log(+"123"); // 123
+// console.log(+"123.45"); // 123.45
+// console.log(+true); // 1
+// console.log(+false); // 0
+// console.log(+null); // 0
+// console.log(+undefined); // NaN
+// console.log(+""); // 0
+// console.log(+"   "); // 0
+// console.log(+"123abc"); // NaN
+
+// 1.3 Boolean'ga o'zgartirish
+// Boolean() funksiyasi
+// console.log(Boolean(1)); // true
+// console.log(Boolean(0)); // false
+// console.log(Boolean("hello")); // true
+// console.log(Boolean("")); // false
+// console.log(Boolean("0")); // true (string!)
+// console.log(Boolean(" ")); // true (probel bor)
+// console.log(Boolean(null)); // false
+// console.log(Boolean(undefined)); // false
+// console.log(Boolean(NaN)); // false
+// console.log(Boolean([])); // true (bo'sh array ham!)
+// console.log(Boolean({})); // true (bo'sh object ham!)
+
+// // Double NOT operator (!!)
+// console.log(!!"hello"); // true
+// console.log(!!""); // false
+// console.log(!!0); // false
+// console.log(!!1); // true
+// console.log(!!null); // false
+// console.log(!!undefined); // false
+
+// // Falsy qiymatlar (faqat 6 ta):
+// // false, 0, "" (bo'sh string), null, undefined, NaN
+
+// // Boshqa hamma narsa Truthy!
+// console.log(Boolean(-1)); // true (manfiy son ham!)
+// console.log(Boolean("false")); // true (string!)
+// console.log(Boolean(Infinity)); // true
+
+// 1.4 Object'ga o'zgartirish
+// // Object() funksiyasi
+// console.log(Object(123)); // Number {123}
+// console.log(Object("hello")); // String {"hello"}
+// console.log(Object(true)); // Boolean {true}
+
+// // null va undefined → bo'sh object
+// console.log(Object(null)); // {}
+// console.log(Object(undefined)); // {}
+
+// ====
+// 2. Implicit Type Conversion (Yashirin Konvertatsiya / Type Coercion)
+// JavaScript avtomatik ravishda turlarni o'zgartiradi.
+// 2.1 String Coercion
+// + operatori bilan string
+// console.log("5" + 3); // "53" (number → string)
+// console.log(3 + "5"); // "35"
+// console.log("hello" + " " + "world"); // "hello world"
+// console.log("5" + true); // "5true"
+// console.log("5" + false); // "5false"
+// console.log("5" + null); // "5null"
+// console.log("5" + undefined); // "5undefined"
+
+// // Murakkab holatlar
+// console.log(1 + 2 + "3"); // "33" (1+2=3, keyin "3"+3="33")
+// console.log("1" + 2 + 3); // "123" (chapdan o'ngga: "1"+2="12", "12"+3="123")
+// console.log(1 + "2" + 3); // "123"
+
+// // Object bilan
+// console.log("Result: " + {}); // "Result: [object Object]"
+// console.log("Array: " + [1, 2, 3]); // "Array: 1,2,3"
+// console.log("Sum: " + [5]); // "Sum: 5"
+
+// // Template literal
+// const age = 25;
+// console.log(`Age: ${age}`); // "Age: 25"
+
+// 2.2 Number Coercion
+// Matematik operatorlar (-, *, /, %)
+// console.log("10" - 5); // 5 (string → number)
+// console.log("10" * "2"); // 20
+// console.log("20" / "4"); // 5
+// console.log("10" % "3"); // 1
+
+// // + operator faqat string uchun istisnо
+// console.log("5" + 3); // "53" (string!)
+// console.log("5" - 3); // 2 (number!)
+
+// // true/false bilan
+// console.log(5 + true); // 6 (true=1)
+// console.log(5 + false); // 5 (false=0)
+// console.log(5 * true); // 5
+// console.log(5 * false); // 0
+
+// // null bilan
+// console.log(5 + null); // 5 (null=0)
+// console.log(5 - null); // 5
+// console.log(5 * null); // 0
+
+// // undefined bilan
+// console.log(5 + undefined); // NaN
+// console.log(5 - undefined); // NaN
+// console.log(5 * undefined); // NaN
+
+// // Murakkab misоllar
+// console.log("5" - "2"); // 3
+// console.log("10" / "2"); // 5
+// console.log("abc" - 5); // NaN
+// console.log("5px" - 3); // NaN
+
+// // Unary operators
+// console.log(+"123"); // 123
+// console.log(-"123"); // -123
+// console.log(+"abc"); // NaN
+
+// 2.3 Boolean Coercion
+// // if statement
+// if ("hello") {
+//   console.log("Bu ishlaydi"); // Truthy
+// }
+
+// if ("") {
+//   console.log("Bu ishlamaydi"); // Falsy
+// }
+
+// // Logical operators (&&, ||, !)
+// console.log(5 && "hello"); // "hello" (ikkalasi ham truthy)
+// console.log(0 && "hello"); // 0 (birinchisi falsy)
+// console.log(null || "default"); // "default"
+// console.log("value" || "default"); // "value"
+
+// // NOT operator
+// console.log(!5); // false
+// console.log(!0); // true
+// console.log(!""); // true
+// console.log(!"hello"); // false
+
+// // Double NOT (boolean'ga o'zgartirish)
+// console.log(!!"hello"); // true
+// console.log(!!0); // false
+
+// // Ternary operator
+// const result = 5 ? "yes" : "no"; // "yes" (5 truthy)
+// const result2 = 0 ? "yes" : "no"; // "no" (0 falsy)
+
+// 2.4 Taqqoslash operatorlari bilan
+// == (qiymat tengligida coercion bo'ladi)
+// console.log(5 == "5"); // true (string → number)
+// console.log(true == 1); // true
+// console.log(false == 0); // true
+// console.log(null == undefined); // true
+// console.log("" == 0); // true
+// console.log("0" == 0); // true
+
+// // === (qat'iy tengliq, coercion yo'q)
+// console.log(5 === "5"); // false
+// console.log(true === 1); // false
+// console.log(false === 0); // false
+// console.log(null === undefined); // false
+// console.log("" === 0); // false
+
+// // >, <, >=, <= (number'ga o'zgartiradi)
+// console.log("10" > 5); // true (string → number)
+// console.log("10" > "5"); // false (string comparison!)
+// console.log("10" > "9"); // false ("1" < "9")
+// console.log("abc" > 5); // false (NaN)
+
+// // G'alati holatlar
+// console.log(null > 0); // false
+// console.log(null == 0); // false
+// console.log(null >= 0); // true (!)
+
+// ===============
+// 3. Amaliy Misollar va Xatolar
+// // ❌ XATO: String qo'shish o'rniga
+// const result1 = "5" + 3 + 2; // "532" (kutilgan: 10)
+
+// // ✅ TO'G'RI:
+// const result2 = Number("5") + 3 + 2; // 10
+// // yoki
+// const result3 = +"5" + 3 + 2; // 10
+
+// // ❌ XATO: Bo'sh string 0 ga teng
+// console.log("" == 0); // true
+// console.log("" === 0); // false
+
+// // ❌ XATO: Array matematik amalda
+// console.log([1] + [2]); // "12" (string!)
+// console.log([1] - [2]); // -1 (number!)
+
+// // ❌ XATO: Object matematik amalda
+// console.log({} + []); // 0 (browser'da)
+// console.log([] + {}); // "[object Object]"
+
+// // ❌ XATO: NaN bilan taqqoslash
+// console.log(NaN == NaN); // false (!)
+// console.log(NaN === NaN); // false (!)
+
+// // ✅ TO'G'RI:
+// console.log(isNaN(NaN)); // true
+// console.log(Number.isNaN(NaN)); // true
+
+// 3.2 Real loyihada ishlatiladigan patternlar
+// 1. Input qiymatini number'ga o'zgartirish
+// function handleInput(value) {
+//   const num = Number(value);
+//   if (isNaN(num)) {
+//     console.log("Iltimos, raqam kiriting");
+//     return;
+//   }
+//   return num;
+// }
+
+// // 2. Default qiymat berish
+// function greet(name) {
+//   name = name || "Mehmon"; // falsy bo'lsa "Mehmon"
+//   console.log(`Salom, ${name}!`);
+// }
+
+// // Zamonaviy usul (Nullish coalescing)
+// function greet2(name) {
+//   name = name ?? "Mehmon"; // null yoki undefined bo'lsa
+//   console.log(`Salom, ${name}!`);
+// }
+
+// greet(""); // "Salom, Mehmon!" (|| ishlatilsa)
+// greet2(""); // "Salom, !" (?? ishlatilsa)
+
+// // 3. Boolean tekshirish
+// function isValidUser(user) {
+//   return !!(user && user.name && user.email);
+// }
+
+// // 4. String'ni number'ga xavfsiz o'zgartirish
+// function safeParseInt(value) {
+//   const num = parseInt(value, 10);
+//   return isNaN(num) ? 0 : num;
+// }
+
+// console.log(safeParseInt("42")); // 42
+// console.log(safeParseInt("abc")); // 0
+
+// // 5. Type guard (TypeScript'dagi kabi)
+// function processValue(value) {
+//   if (typeof value === "string") {
+//     return value.toUpperCase();
+//   } else if (typeof value === "number") {
+//     return value * 2;
+//   } else {
+//     return "Unknown type";
+//   }
+// }
+
+// console.log(processValue("hello")); // "HELLO"
+// console.log(processValue(21)); // 42
+// console.log(processValue(true)); // "Unknown type"
+
+// 3.3 Type Conversion jadvali
+// Qiymat      String       Number    Boolean
+// ---------------------------------------------
+// undefined   "undefined"  NaN       false
+// null        "null"       0         false
+// true        "true"       1         true
+// false       "false"      0         false
+// ""          ""           0         false
+// "  "        "  "         0         true
+// "0"         "0"          0         true
+// "000"       "000"        0         true
+// "1"         "1"          1         true
+// "abc"       "abc"        NaN       true
+// 0           "0"          0         false
+// -0          "0"          -0        false
+// NaN         "NaN"        NaN       false
+// Infinity    "Infinity"   Infinity  true
+// -Infinity   "-Infinity"  -Infinity true
+// 1           "1"          1         true
+// []          ""           0         true
+// [20]        "20"         20        true
+// [10,20]     "10,20"      NaN       true
+// {}          "[object...  NaN       true
+
+// 4. Best Practices
+
+// // 1. Har doim === va !== ishlatish
+// if (value === 10) { /* ... */ }
+// if (value !== null) { /* ... */ }
+
+// // 2. Aniq type conversion
+// const num = Number(input); // ✅
+// const num = +input; // ✅ (qisqa, lekin kamroq o'qiladi)
+
+// // 3. parseInt'da radix ko'rsatish
+// const num = parseInt(value, 10); // ✅
+// const num = parseInt(value); // ❌ (xavfli)
+
+// // 4. isNaN o'rniga Number.isNaN
+// console.log(Number.isNaN(value)); // ✅
+// console.log(isNaN(value)); // ❌ (coercion qiladi)
+
+// // 5. Nullish coalescing (??) vs OR (||)
+// const value = input ?? "default"; // ✅ (faqat null/undefined)
+// const value = input || "default"; // ❌ (0, "" ham "default" bo'ladi)
+
+// // 6. Optional chaining (?.)
+// const name = user?.profile?.name; // ✅
+// const name = user && user.profile && user.profile.name; // ❌ (uzoq)
+
+// // 7. Type checking
+// if (typeof value === "string") { /* ... */ } // ✅
+// if (value instanceof Array) { /* ... */ } // ✅
+// if (Array.isArray(value)) { /* ... */ } // ✅ (eng yaxshi)
