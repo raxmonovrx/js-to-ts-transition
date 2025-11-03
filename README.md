@@ -575,9 +575,9 @@ Barcha bilimlarni praktikada qo'llash va TypeScriptga tayyor bo'lish
 
 ### ⚠️ Ogohlantirishlar:
 
-- **Kechkinda edashmasdan** — har kuni vaqt ajrating
+- **Muntazam va davomiylik** — har kuni vaqt ajrating
 - **Kodlarni yozmasdan ko'rganingiz yeterli emas** — faqat yozish bilan o'rganasiz
-- **Muammolarni qo'ldan qo'lda hal qiling** — AI dan so'roq qilishga rush
+- **Muammolarni qo'ldan qo'lda hal qiling** — AI dan so'roq qilishga urinmang
 - **Takrorlashni o'tkazib yubormang** — bilim mustahkam bo'lmasligi mumkin
 
 ### ✅ Yondashuv:
@@ -585,7 +585,7 @@ Barcha bilimlarni praktikada qo'llash va TypeScriptga tayyor bo'lish
 - **Har kuni 2-3 soat** ajrating
 - **Notebook yarating** — muhim qoidalar uchun
 - **Kodlar commit qiling** — Git yordamida progressni kuzating
-- **Sukr qiling** — kichik muvaffaqiyatlarni qadrlang
+- **Shukr qiling** — kichik muvaffaqiyatlarni qadrlang
 
 ---
 
